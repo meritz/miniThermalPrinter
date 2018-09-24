@@ -142,20 +142,33 @@ export class HomePage {
   prepareToPrint(data) {
     // u can remove this when generate the receipt using another method
     if(!data.title){
-      data.title = 'Title';
+      data.title = 'titre';
+    }
+    if(!data.name){
+      data.name = 'nom clients';
     }
     if(!data.text){
-      data.text = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis tellus sapien, aliquam id mattis et, pretium eu libero. In dictum mauris vel lorem porttitor, et tempor neque semper. Aliquam erat volutpat. Aliquam vel malesuada urna, a pulvinar augue. Nunc ac fermentum massa. Proin efficitur purus fermentum tellus fringilla, fringilla aliquam nunc dignissim. Duis et luctus tellus, sed ullamcorper lectus.';
+      data.text = 'nom plats';
+    }
+    if(!data.price){
+      data.price = 'text2';
+    }
+    if(!data.text1){
+      data.text1 = 'text1';
     }
     if(!data.Date){
       data.Date = 'date';
     }
 
+
     let receipt = '';
     receipt += commands.HARDWARE.HW_INIT;
     receipt += commands.TEXT_FORMAT.TXT_4SQUARE;
     receipt += commands.TEXT_FORMAT.TXT_ALIGN_CT;
+    // receipt += (Biziye).toUpperCase();
     receipt += data.title.toUpperCase();
+    receipt += data.adress;
+    receipt += data.phone;
     receipt += commands.EOL;
     receipt += commands.TEXT_FORMAT.TXT_NORMAL;
     receipt += commands.HORIZONTAL_LINE.HR_58MM;
@@ -163,13 +176,27 @@ export class HomePage {
     receipt += commands.HORIZONTAL_LINE.HR2_58MM;
     receipt += commands.EOL;
     receipt += commands.TEXT_FORMAT.TXT_ALIGN_LT;
+    receipt += data.name;
+    receipt += commands.EOL;
     receipt += data.text;
+    receipt += commands.EOL;
+    receipt += data.text2;
+    receipt += commands.EOL;
+    receipt += data.text1;
     receipt += commands.EOL;
     receipt += data.Date;
     //secure space on footer
     receipt += commands.EOL;
+    receipt += commands.TEXT_FORMAT.TXT_NORMAL;
+    receipt += commands.HORIZONTAL_LINE.HR_58MM;
+    receipt += commands.EOL;
+    receipt += commands.HORIZONTAL_LINE.HR2_58MM;
+    receipt += commands.EOL;
+    receipt += commands.TEXT_FORMAT.TXT_ALIGN_LT;
     receipt += commands.EOL;
     receipt += commands.EOL;
+
+
 
     let alert = this.alertCtrl.create({
       title: 'Select your printer',
