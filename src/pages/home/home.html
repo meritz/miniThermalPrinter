@@ -1,22 +1,28 @@
 <ion-header>
   <ion-navbar color="primary">
     <ion-title>
-      Bluetooth printer sample
+      @lloLivrerMoi365
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
   <ion-list>
+    ion
     <ion-item>
-      <ion-label color="primary" floating>Title</ion-label>
-      <ion-input [(ngModel)]='inputData.title'></ion-input> 
+      <ion-label color="primary" floating></ion-label>
+      <ion-input [(ngModel)]='inputData.title'></ion-input>
     </ion-item>
     <ion-item>
       <ion-label color="primary" floating>Text</ion-label>
-      <ion-input [(ngModel)]='inputData.text'></ion-input> 
+      <ion-input [(ngModel)]='inputData.text'></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label color="primary" floating>Date</ion-label>
+      <ion-datetime displayFormat="MMM DD, YYYY HH:mm" [(ngModel)]="inputData.Date">
+      </ion-datetime>
     </ion-item>
     <div hidden></div>
   </ion-list>
-  <button ion-button full (click)="prepareToPrint(inputData)">Test print</button>
+  <button ion-button full (click)="prepareToPrint(inputData)">print</button>
 </ion-content>

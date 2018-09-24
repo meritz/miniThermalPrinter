@@ -9,9 +9,13 @@ import { commands } from './../../providers/printer/printer-commands';
 })
 export class HomePage {
   inputData:any = {};
-  constructor(public navCtrl: NavController, private printer: PrinterProvider, private alertCtrl: AlertController, private loadCtrl: LoadingController, private toastCtrl: ToastController) {}
+  constructor(public navCtrl: NavController,
+               private printer: PrinterProvider,
+               private alertCtrl: AlertController,
+               private loadCtrl: LoadingController,
+               private toastCtrl: ToastController) {}
 
-  showToast(data) { 
+  showToast(data) {
     let toast = this.toastCtrl.create({
       duration: 3000,
       message: data,
@@ -98,7 +102,7 @@ export class HomePage {
     console.log('Data: ', data);
     let load = this.loadCtrl.create({
       content: 'Printing...'
-    }); 
+    });
     load.present();
     this.printer.connectBluetooth(device).subscribe(status => {
         console.log(status);
@@ -143,6 +147,9 @@ export class HomePage {
     if(!data.text){
       data.text = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis tellus sapien, aliquam id mattis et, pretium eu libero. In dictum mauris vel lorem porttitor, et tempor neque semper. Aliquam erat volutpat. Aliquam vel malesuada urna, a pulvinar augue. Nunc ac fermentum massa. Proin efficitur purus fermentum tellus fringilla, fringilla aliquam nunc dignissim. Duis et luctus tellus, sed ullamcorper lectus.';
     }
+    if(!data.Date){
+      data.Date = 'date';
+    }
 
     let receipt = '';
     receipt += commands.HARDWARE.HW_INIT;
@@ -157,6 +164,8 @@ export class HomePage {
     receipt += commands.EOL;
     receipt += commands.TEXT_FORMAT.TXT_ALIGN_LT;
     receipt += data.text;
+    receipt += commands.EOL;
+    receipt += data.Date;
     //secure space on footer
     receipt += commands.EOL;
     receipt += commands.EOL;
