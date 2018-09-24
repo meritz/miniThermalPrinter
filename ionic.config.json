@@ -1,0 +1,7 @@
+{
+  "name": "ionic-escpos-bluetooth-printer-sample",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}
